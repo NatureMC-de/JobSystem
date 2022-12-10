@@ -4,6 +4,7 @@ import cn.nukkit.Player;
 import cn.nukkit.Server;
 import cn.nukkit.level.Sound;
 import de.leontendev.events.own.JobAddLevelEvent;
+import de.leontendev.events.own.JobAddXpEvent;
 import de.leontendev.utils.JobConfig;
 
 import java.sql.*;
@@ -182,6 +183,7 @@ public class MySQL {
                 ps.setInt(1, fullxp);
                 ps.setString(2, uuid.toString());
                 ps.executeUpdate();
+                Server.getInstance().getPluginManager().callEvent(new JobAddXpEvent(Server.getInstance().getPlayer(uuid).get(), job, fullxp));
             }
         }catch (SQLException e){
             e.printStackTrace();
