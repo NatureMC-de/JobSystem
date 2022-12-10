@@ -3,7 +3,10 @@ package de.leontendev.utils;
 import cn.nukkit.utils.Config;
 import de.leontendev.JobSystem;
 
+
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 public class JobConfig {
 
@@ -18,6 +21,8 @@ public class JobConfig {
     }
 
     public void createDefault() {
+        List<String> strings = new ArrayList<>();
+        strings.add("world");
         this.addDefault("jobsystem.prefix", "§cJobSystem §f» ");
         this.addDefault("jobsystem.command.name", "job");
         this.addDefault("jobsystem.command.description", "Take a job!");
@@ -32,8 +37,9 @@ public class JobConfig {
         this.addDefault("jobsystem.database.mongodb.uri", "mongodb://localhost:27017");
         this.addDefault("jobsystem.database.mongodb.database", "mc");
         this.addDefault("jobsystem.database.mongodb.collection", "jobs");
-        this.addDefault("jobsystem.jobs.usegui", true);
-        this.addDefault("jobsystem.jobs.useui", false);
+        this.addDefault("jobsystem.settings.usegui", true);
+        this.addDefault("jobsystem.settings.useui", false);
+        this.addDefault("jobsystem.settings.allowedworlds", strings);
     }
 
     public static String prefix() {
@@ -93,11 +99,15 @@ public class JobConfig {
     }
 
     public static boolean useGUI(){
-        return config.getBoolean("jobsystem.jobs.usegui");
+        return config.getBoolean("jobsystem.settings.usegui");
     }
 
     public static boolean useUI(){
-        return config.getBoolean("jobsystem.jobs.useui");
+        return config.getBoolean("jobsystem.settings.useui");
+    }
+
+    public static java.util.List allowedWorlds(){
+        return config.getStringList("jobsystem.settings.allowedworlds");
     }
 
 

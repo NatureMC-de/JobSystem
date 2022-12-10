@@ -2,6 +2,7 @@ package de.leontendev;
 
 import cn.nukkit.Server;
 import cn.nukkit.plugin.PluginBase;
+import de.leontendev.commands.JobCMD;
 import de.leontendev.utils.Databases.MongoDB;
 import de.leontendev.utils.Databases.MySQL;
 import de.leontendev.utils.JobConfig;
@@ -35,7 +36,7 @@ public class JobSystem extends PluginBase {
     }
 
     public void registerCommands(){
-
+        getServer().getCommandMap().register("", new JobCMD(JobConfig.commandName(), JobConfig.commandDescription(), JobConfig.commandUsageMessage(), new String[]{}));
     }
 
     public void registerEvents(){
