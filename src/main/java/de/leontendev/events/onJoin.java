@@ -8,6 +8,6 @@ public class onJoin implements Listener {
 
     @EventHandler
     public void onJoin(PlayerJoinEvent event){
-        
+
     }
 }

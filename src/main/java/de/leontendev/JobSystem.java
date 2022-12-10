@@ -46,10 +46,7 @@ public class JobSystem extends PluginBase {
     public void connectDataBases(){
         try {
             MySQL.connect();
-        } catch (SQLException e) {
-            Server.getInstance().getLogger().info(JobConfig.prefix() + "§cCan't connect to mysql database!");
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             Server.getInstance().getLogger().info(JobConfig.prefix() + "§cCan't connect to mysql database!");
             e.printStackTrace();
         }

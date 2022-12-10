@@ -3,6 +3,7 @@ package de.leontendev.utils.Databases;
 import cn.nukkit.Player;
 import cn.nukkit.Server;
 import cn.nukkit.level.Sound;
+import de.leontendev.events.own.JobAddLevelEvent;
 import de.leontendev.utils.JobConfig;
 
 import java.sql.*;
@@ -176,6 +177,7 @@ public class MySQL {
                     player.sendTitle("-- §aLumberJack§f --", "§eLvl: §c" + fulllvl);
                 }
                 player.getLevel().addSound(player.getDirectionVector(), Sound.RANDOM_LEVELUP);
+                Server.getInstance().getPluginManager().callEvent(new JobAddLevelEvent(Server.getInstance().getPlayer(uuid).get(), job, lvl, lvl+1));
             }else {
                 ps.setInt(1, fullxp);
                 ps.setString(2, uuid.toString());
