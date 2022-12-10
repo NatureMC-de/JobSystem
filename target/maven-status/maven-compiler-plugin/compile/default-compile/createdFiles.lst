@@ -1,5 +1,9 @@
-de\leontendev\JobSystem.class
-de\leontendev\utils\Databases\MySQL.class
 de\leontendev\utils\JobConfig.class
 de\leontendev\commands\JobCMD.class
 de\leontendev\utils\Databases\MongoDB.class
+de\leontendev\JobSystem.class
+de\leontendev\utils\Databases\MySQL.class
+de\leontendev\events\own\JobAddLevelEvent.class
+de\leontendev\events\onJoin.class
+de\leontendev\events\own\JobAddXpEvent.class
+de\leontendev\utils\helpers\Jobs.class
