@@ -33,7 +33,6 @@ public class JobConfig {
         this.addDefault("jobsystem.database.mysql.database", "mc");
         this.addDefault("jobsystem.database.mysql.username", "root");
         this.addDefault("jobsystem.database.mysql.password", "12345");
-        this.addDefault("jobsystem.database.mongodb.usemongodb", false);
         this.addDefault("jobsystem.database.mongodb.uri", "mongodb://localhost:27017");
         this.addDefault("jobsystem.database.mongodb.database", "mc");
         this.addDefault("jobsystem.database.mongodb.collection", "jobs");
@@ -80,10 +79,6 @@ public class JobConfig {
 
     public static String mysqlPassword(){
         return config.getString("jobsystem.database.mysql.password");
-    }
-
-    public static boolean useMongoDB(){
-        return config.getBoolean("jobsystem.database.mongodb.usemongodb");
     }
 
     public static String mongoDBURI(){

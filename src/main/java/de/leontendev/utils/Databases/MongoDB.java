@@ -22,7 +22,7 @@ public class MongoDB {
     private static MongoCollection<Document> jobs;
 
     public static void connect(){
-        if (JobConfig.useMongoDB()) {
+        if (!JobConfig.useMysql()) {
             String uri = JobConfig.mongoDBURI();
             mc = MongoClients.create(uri);
             MongoDatabase mongoDatabase = mc.getDatabase(JobConfig.mongoDBDatabase());
