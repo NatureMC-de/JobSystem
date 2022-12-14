@@ -37,11 +37,11 @@ public class MongoDB {
         if (!exists(player)) {
             Document document = new Document("uuid", player.getUniqueId())
                     .append("currentjob", "")
-                    .append("lumberjacklvl", 0)
+                    .append("lumberjacklvl", 1)
                     .append("lumberjackxp", 0)
-                    .append("hunterlvl", 0)
+                    .append("hunterlvl", 1)
                     .append("hunterxp", 0)
-                    .append("minerlvl", 0)
+                    .append("minerlvl", 1)
                     .append("minerxp", 0);
             jobs.insertOne(document);
         }
@@ -63,10 +63,14 @@ public class MongoDB {
     }
 
     public static String getJob(Player player){
-        Document document = new Document("uuid", player.getUniqueId());
-        Document found = jobs.find(document).first();
-        assert found != null;
-        return found.getString("currentjob");
+        if (hasJob(player)) {
+            Document document = new Document("uuid", player.getUniqueId());
+            Document found = jobs.find(document).first();
+            assert found != null;
+            return found.getString("currentjob");
+        }else {
+            return "";
+        }
     }
 
     public static boolean hasJob(Player player){
@@ -108,7 +112,7 @@ public class MongoDB {
             player.getLevel().addSound(player.getDirectionVector(), Sound.RANDOM_LEVELUP);
             Server.getInstance().getPluginManager().callEvent(new JobAddLevelEvent(player, job, lvl, lvl+1));
         }else {
-            Bson newEntry = new Document(job + "xp", xp);
+            Bson newEntry = new Document(job + "xp", xp + xpBefore);
             Bson newEntrySet = new Document("$set", newEntry);
             assert found != null;
             jobs.updateOne(found, newEntrySet);

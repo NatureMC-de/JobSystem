@@ -6,6 +6,7 @@ import cn.nukkit.level.Sound;
 import de.leontendev.events.own.JobAddLevelEvent;
 import de.leontendev.events.own.JobAddXpEvent;
 import de.leontendev.utils.JobConfig;
+import lombok.SneakyThrows;
 
 import java.sql.*;
 import java.util.UUID;
@@ -65,11 +66,11 @@ public class MySQL {
                 PreparedStatement ps2 = connection.prepareStatement("INSERT INTO jobs (UUID, CURRENTJOB, LUMBERJACKLVL, LUMBERJACKXP, HUNTERLVL, HUNTERXP, MINERLVL, MINERXP) VALUES (?, ?, ?, ?, ?, ?, ? ,?)");
                 ps2.setString(1, uuid.toString());
                 ps2.setString(2, "");
-                ps2.setInt(3, 0);
+                ps2.setInt(3, 1);
                 ps2.setInt(4, 0);
-                ps2.setInt(5, 0);
+                ps2.setInt(5, 1);
                 ps2.setInt(6, 0);
-                ps2.setInt(7, 0);
+                ps2.setInt(7, 1);
                 ps2.setInt(8, 0);
                 ps2.executeUpdate();
                 return;
@@ -105,20 +106,17 @@ public class MySQL {
         }
     }
 
+    @SneakyThrows
     public static String getJob(UUID uuid){
-        try {
-            PreparedStatement ps = connection.prepareStatement("SELECT CURRENTJOB FROM jobs WHERE UUID=?");
-            ps.setString(1, uuid.toString());
-            ResultSet rs = ps.executeQuery();
-            String job = "";
-            if (rs.next()){
-                job = rs.getString("CURRENTJOB");
-                return job;
-            }
-        }catch (SQLException e){
-            e.printStackTrace();
-        }
-        return "";
+                PreparedStatement ps = connection.prepareStatement("SELECT CURRENTJOB FROM jobs WHERE UUID=?");
+                ps.setString(1, uuid.toString());
+                ResultSet rs = ps.executeQuery();
+                String job = "";
+                if (rs.next()) {
+                    job = rs.getString("CURRENTJOB");
+                    return job;
+                }
+            return "";
     }
 
     public static boolean hasJob(UUID uuid){

@@ -3,6 +3,8 @@ package de.leontendev;
 import cn.nukkit.Server;
 import cn.nukkit.plugin.PluginBase;
 import de.leontendev.commands.JobCMD;
+import de.leontendev.events.onBreak;
+import de.leontendev.events.onJoin;
 import de.leontendev.utils.Databases.MongoDB;
 import de.leontendev.utils.Databases.MySQL;
 import de.leontendev.utils.JobConfig;
@@ -40,7 +42,8 @@ public class JobSystem extends PluginBase {
     }
 
     public void registerEvents(){
-
+        getServer().getPluginManager().registerEvents(new onBreak(), this);
+        getServer().getPluginManager().registerEvents(new onJoin(), this);
     }
 
     public void connectDataBases(){

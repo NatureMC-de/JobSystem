@@ -36,9 +36,11 @@ public class JobConfig {
         this.addDefault("jobsystem.database.mongodb.uri", "mongodb://localhost:27017");
         this.addDefault("jobsystem.database.mongodb.database", "mc");
         this.addDefault("jobsystem.database.mongodb.collection", "jobs");
-        this.addDefault("jobsystem.settings.usegui", true);
-        this.addDefault("jobsystem.settings.useui", false);
+        this.addDefault("jobsystem.settings.useui", true);
         this.addDefault("jobsystem.settings.allowedworlds", strings);
+        this.addDefault("jobsystem.jobs.lumberjack.xp", 5);
+        this.addDefault("jobsystem.jobs.hunter.xp", 5);
+        this.addDefault("jobsystem.jobs.miner.xp", 5);
     }
 
     public static String prefix() {
@@ -93,10 +95,6 @@ public class JobConfig {
         return config.getString("jobsystem.database.mongodb.collection");
     }
 
-    public static boolean useGUI(){
-        return config.getBoolean("jobsystem.settings.usegui");
-    }
-
     public static boolean useUI(){
         return config.getBoolean("jobsystem.settings.useui");
     }
@@ -104,6 +102,19 @@ public class JobConfig {
     public static java.util.List allowedWorlds(){
         return config.getStringList("jobsystem.settings.allowedworlds");
     }
+
+    public static Integer lumberjackXP(){
+        return config.getInt("jobsystem.jobs.lumberjack.xp");
+    }
+
+    public static Integer hunterXP(){
+        return config.getInt("jobsystem.jobs.hunter.xp");
+    }
+
+    public static Integer minerXP(){
+        return config.getInt("jobsystem.jobs.miner.xp");
+    }
+
 
 
     public void addDefault(String path, Object object) {
